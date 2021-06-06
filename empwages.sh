@@ -2,7 +2,7 @@
 
 echo "Welcome to Employee Wage Computation Program on Master branch"
 
-arr=()
+declare -A arr
 wagePerHr=20
 fullHr=8
 partHr=4
@@ -42,9 +42,9 @@ case $attendence in
 	2)wage=$(( $wage+ ($wagePerHr*$fullHr) ))
 	  dailywage=$(($wagePerHr*$fullHr))
 	  ;;
- 	3)echo "Attendence Error"
+	3)echo "Attendence Error"
 esac
-	arr[$day]=$dailywage 
+	arr["Day "$day]=$dailywage 
 	totalHrs=`wageHrs $totalHrs`
 
 if [[ $totalHrs -eq 100 ]]; then
@@ -56,5 +56,6 @@ done
 echo "Days = $day"
 echo "Hours = $totalHrs"
 echo "Daily wages for 1 Month are: "
+echo ${!arr[@]}
 echo ${arr[@]}
 echo "Wage for a month(i.e. 20 days or 100 hrs) = $wage"
